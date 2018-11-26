@@ -13,13 +13,14 @@ public class settings : MonoBehaviour {
 	public Slider soundeffectsslider;
 	public AudioSource music;
 	public AudioSource soundeffects;
+	public BackgroundMechanics script;
 
 	// Use this for initialization
 	void Start () {
 		settingsbuton.onClick.AddListener (open);
 		backbutton.onClick.AddListener (close);
 		settingscanvas.SetActive (false);
-
+		resetgame.onClick.AddListener (reset);
 	}
 	
 	// Update is called once per frame
@@ -37,5 +38,8 @@ public class settings : MonoBehaviour {
 	}
 
 	//reset game button needs to be implemented after saving has been figured out
-
+	void reset(){
+		script.clearsave ();
+		close ();
+	}
 }
