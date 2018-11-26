@@ -37,7 +37,7 @@ public class settings : MonoBehaviour {
 		settingscanvas.SetActive (false);
 	}
 
-	//reset game button needs to be implemented after saving has been figured out
+	
 	void reset(){
 		script.clearsave ();
 		close ();
