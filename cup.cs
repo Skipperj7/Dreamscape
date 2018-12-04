@@ -16,6 +16,7 @@ public class cup : MonoBehaviour
     void Start()
     {
         for (int i = 0; i < cupsname.Count; i++){
+        //need to create new var for each cup
            cup test  = new cup(cupsname[i], cupsvol[i]);
         } 
     }
