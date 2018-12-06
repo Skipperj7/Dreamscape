@@ -3,108 +3,132 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class shop : MonoBehaviour
-{
+public class shop : MonoBehaviour {
 
-    public Image hair;
-    public Image shirt;
-    public Image pants;
-    public Image shoes;
+	public Image hair;
+	public Image shirt;
+	public Image pants;
+	public Image shoes;
+	public BackgroundMechanics script;
 
-    public Button hairright;
-    public Button hairleft;
-    public Button shirtright;
-    public Button shirtleft;
-    public Button pantsright;
-    public Button pantsleft;
-    public Button shoesright;
-    public Button shoesleft;
+	private static List<string> hairlist;
+	private static List<string> shirtlist;
+	private static List<string> pantslist;
+	private static List<string> shoeslist;
 
+	private static List<string> hairlistunlocked;
+	private static List<string> shirtlistunlocked;
+	private static List<string> pantslistunlocked;
+	private static List<string> shoeslistunlocked;
 
-    public BackgroundMechanics script;
-    public data script1;
-
-    private List<string> hairlist;
-    private List<string> shirtlist;
-    private List<string> pantslist;
-    private List<string> shoeslist;
-
-    private List<string> hairlistunlocked;
-    private List<string> shirtlistunlocked;
-    private List<string> pantslistunlocked;
-    private List<string> shoeslistunlocked;
-
-    private int hairselected;
-    private int shirtselected;
-    private int pantsselected;
-    private int shoesselected;
-
-    // Use this for initialization
-    void Start()
-    {
-        hair.sprite = script1.hair;
-        shirt.sprite = script1.shirt;
-        pants.sprite = script1.pants;
-        shoes.sprite = script1.shoes;
-
-        hairright.onClick.AddListener(hairrightfunc);
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void hairrightfunc(){
-        spinthrough(hair, 1);
-    }
-    void hairleftfunc()
-    {
-        spinthrough(hair, -1);
-    }
-    void shirtrightfunc()
-    {
-        spinthrough(shirt, 1);
-    }
-    void shirtleftfunc()
-    {
-        spinthrough(shirt, -1);
-    }
-    void pantsrightfunc()
-    {
-        spinthrough(pants, 1);
-    }
-    void pantsleftfunc()
-    {
-        spinthrough(pants, -1);
-    }
-    void shoesrightfunc()
-    {
-        spinthrough(shoes, 1);
-    }
-    void shoesleftfunc()
-    {
-        spinthrough(shoes, -1);
-    }
+	private int hairselected;
+	private int shirtselected;
+	private int pantsselected;
+	private int shoesselected;
 
 
-	void spinthrough(Image img, int i){
-        switch
+	public Button hairright;
+	public Button shirtright;
+	public Button pantsright;
+	public Button shoesright;
+	public Button hairleft;
+	public Button shirtleft;
+	public Button pantsleft;
+	public Button shoesleft;
+
+	public Button shopbutton;
+
+	// Use this for initialization
+	void Start () {
+		shopbutton.onClick.AddListener (openshop);
+
+		hairright.onClick.AddListener (delegate{spinthrough("hair", 1);});
+		shirtright.onClick.AddListener (delegate{spinthrough("shirt", 1);});
+		pantsright.onClick.AddListener (delegate{spinthrough("pants", 1);});
+		shoesright.onClick.AddListener (delegate{spinthrough("shoes", 1);});
+		hairleft.onClick.AddListener (delegate{spinthrough("hair", -1);});
+		shirtleft.onClick.AddListener (delegate{spinthrough("shirt", -1);});
+		pantsleft.onClick.AddListener (delegate{spinthrough("pants", -1);});
+		shoesleft.onClick.AddListener (delegate{spinthrough("shoes", -1);});
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
 	}
 
-	void findunlocked(Image img){
+
+
+	void spinthrough(string str, int i){
+		//get children of image (right/left buttons)
+
+		switch (str) {
+		case "hair":
+
+			break;
+		case "shirt":
+
+			break;
+
+		case "pants":
+
+			break;
+
+		case "shoes":
+
+			break;
+		}
+
+
+	}
+
+	static bool findunlocked(string str, int i){
 		//compare locked to unlocked to see if item is unlocked
+		switch (str) {
+		case "hair":
+			if(hairlist[i] == hairlistunlocked[i]){
+				return true;
+			}
+			else{
+				return false;
+			}
+
+		case "shirt":
+			if(shirtlist[i] == shirtlistunlocked[i]){
+				return true;
+			}
+			else{
+				return false;
+			}
+
+
+		case "pants":
+			if(pantslist[i] == pantslistunlocked[i]){
+				return true;
+			}
+			else{
+				return false;
+			}
+
+
+		case "shoes":
+			if(shoeslist[i] == shoeslistunlocked[i]){
+				return true;
+			}
+			else{
+				return false;
+			}
+
+		default:
+			return false;	
+		
+		}
+
 	}
 
-    void findsprite(){
-        
-    }
-
-    void equip(Image img, Sprite s){
-        
-    }
+	void openshop(){
+		
+	}
 
 	//access backgroundmechanics data to save unlocked
 }
