@@ -45,7 +45,7 @@ public class lever : MonoBehaviour {
 
     void changemaze(string m){
         switch(m){
-            case "Maze 1 Level 1":
+            case "Maze 1 Lever 1":
                 int i = maze.transform.childCount;
                 for (int l = 0; l < i; l++)
                 {
@@ -53,5 +53,6 @@ public class lever : MonoBehaviour {
                 }
                 break;
         }
+        Destroy(GetComponent<lever>());
     }
 }
