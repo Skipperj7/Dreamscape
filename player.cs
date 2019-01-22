@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,9 +24,13 @@ public class player : MonoBehaviour
     private int lint = 0;
     private int upint = 0;
     private int dint = 0;
+
+
+    public Rigidbody2D rigid;
     void Start()
     {
-
+        // Freeze the rotation
+        rigid.freezeRotation = true;
     }
     void Update()
     {
