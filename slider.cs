@@ -17,10 +17,12 @@ public class slider : MonoBehaviour
         {
             case "vertical":
                 up = true;
+
                 break;
 
             case "horizontal":
                 up = false;
+
                 break;
         }
         GetComponent<Rigidbody2D>().freezeRotation = true;
@@ -29,41 +31,47 @@ public class slider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
 
     }
     private bool x;
 
     private void OnMouseOver()
     {
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             originalmouse = Input.mousePosition;
             originalblock = gameObject.transform.position;
             x = true;
-            Debug.Log("w1");
+            //Debug.Log("w1");
         }
 
         if (x)
         {
-            Debug.Log("w2");
+            //Debug.Log("w2");
             if (Input.GetMouseButton(0))
             {
                 GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
                 if (up)
                 {
+
                     if (originalmouse.y > Input.mousePosition.y)
                     {
                         transform.Translate(Vector2.down * (originalmouse.y - Input.mousePosition.y) / 1.25f * Time.deltaTime);
+
                     }
                     else if (originalmouse.y < Input.mousePosition.y)
                     {
                         transform.Translate(Vector2.up * (Input.mousePosition.y - originalmouse.y) / 1.25f * Time.deltaTime);
                     }
+
+
                 }
                 else
                 {
+
                     if (originalmouse.x > Input.mousePosition.x)
                     {
                         transform.Translate(Vector2.left * (originalmouse.x - Input.mousePosition.x) / 1.25f * Time.deltaTime);
@@ -71,13 +79,16 @@ public class slider : MonoBehaviour
                     else if (originalmouse.x < Input.mousePosition.x)
                     {
                         transform.Translate(Vector2.right * (Input.mousePosition.x - originalmouse.x) / 1.25f * Time.deltaTime);
+
                     }
+
                 }
                 originalmouse = Input.mousePosition;
             }
             else
             {
                 GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+
             }
         }
     }
@@ -85,5 +96,6 @@ public class slider : MonoBehaviour
     private void OnMouseExit()
     {
         x = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
 }
