@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,10 +34,12 @@ public class player : MonoBehaviour
     }
     void Update()
     {
-
+        //Debug.Log(rigid.velocity);
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            //transform.Translate(Vector2.right * speed * Time.deltaTime);
+            rigid.AddForce(Vector2.right * speed);
+
             if (!lrunning & !rrunning & !urunning & !drunning)
             {
                 StartCoroutine(rightwalkanimation(rint));
@@ -54,7 +56,8 @@ public class player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
+            //transform.Translate(Vector2.left * speed * Time.deltaTime);
+            rigid.AddForce(Vector2.left * speed);
             if (!lrunning & !rrunning & !urunning & !drunning)
             {
                 StartCoroutine(leftwalkanimation(lint));
@@ -65,26 +68,30 @@ public class player : MonoBehaviour
         else
         {
             l = false;
+
         }
 
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
+            //transform.Translate(Vector2.up * speed * Time.deltaTime);
+            rigid.AddForce(Vector2.up * speed);
             if (!lrunning & !rrunning & !urunning & !drunning)
             {
                 StartCoroutine(upwalkanimation(upint));
             }
             u = true;
-
+            rigid.velocity = Vector2.zero;
         }
         else
         {
             u = false;
+
         }
 
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector2.down * speed * Time.deltaTime);
+            //transform.Translate(Vector2.down * speed * Time.deltaTime);
+            rigid.AddForce(Vector2.down * speed);
             if (!lrunning & !rrunning & !urunning & !drunning)
             {
                 StartCoroutine(downwalkanimation(dint));
@@ -95,8 +102,10 @@ public class player : MonoBehaviour
         else
         {
             d = false;
+
         }
 
+        rigid.velocity = Vector2.zero;
 
 
     }
