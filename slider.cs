@@ -32,6 +32,7 @@ public class slider : MonoBehaviour
        
 
     }
+    private bool x;
 
     private void OnMouseOver()
     {
@@ -40,38 +41,49 @@ public class slider : MonoBehaviour
         {
             originalmouse = Input.mousePosition;
             originalblock = gameObject.transform.position;
+            x = true;
+            Debug.Log("w1");
         }
 
-        if (Input.GetMouseButton(0))
+        if (x)
         {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            if (up)
+            Debug.Log("w2");
+            if (Input.GetMouseButton(0))
             {
-                if (originalmouse.y > Input.mousePosition.y)
+                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+                if (up)
                 {
-                    transform.Translate(Vector2.down * (originalmouse.y - Input.mousePosition.y) / 1.25f * Time.deltaTime);
+                    if (originalmouse.y > Input.mousePosition.y)
+                    {
+                        transform.Translate(Vector2.down * (originalmouse.y - Input.mousePosition.y) / 1.25f * Time.deltaTime);
+                    }
+                    else if (originalmouse.y < Input.mousePosition.y)
+                    {
+                        transform.Translate(Vector2.up * (Input.mousePosition.y - originalmouse.y) / 1.25f * Time.deltaTime);
+                    }
                 }
-                else if (originalmouse.y < Input.mousePosition.y)
+                else
                 {
-                    transform.Translate(Vector2.up * (Input.mousePosition.y - originalmouse.y) / 1.25f * Time.deltaTime);
+                    if (originalmouse.x > Input.mousePosition.x)
+                    {
+                        transform.Translate(Vector2.left * (originalmouse.x - Input.mousePosition.x) / 1.25f * Time.deltaTime);
+                    }
+                    else if (originalmouse.x < Input.mousePosition.x)
+                    {
+                        transform.Translate(Vector2.right * (Input.mousePosition.x - originalmouse.x) / 1.25f * Time.deltaTime);
+                    }
                 }
+                originalmouse = Input.mousePosition;
             }
             else
             {
-                if (originalmouse.x > Input.mousePosition.x)
-                {
-                    transform.Translate(Vector2.left * (originalmouse.x - Input.mousePosition.x) / 1.25f * Time.deltaTime);
-                }
-                else if (originalmouse.x < Input.mousePosition.x)
-                {
-                    transform.Translate(Vector2.right * (Input.mousePosition.x - originalmouse.x) / 1.25f * Time.deltaTime);
-                }
+                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             }
-            originalmouse = Input.mousePosition;
         }
-        else
-        {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        }
+    }
+
+    private void OnMouseExit()
+    {
+        x = false;
     }
 }
