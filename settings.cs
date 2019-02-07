@@ -21,12 +21,29 @@ public class settings : MonoBehaviour {
 		backbutton.onClick.AddListener (close);
 		settingscanvas.SetActive (false);
 		resetgame.onClick.AddListener (reset);
+
+		script.load ();
+       
+		musicslider.value = script.musicvol;
+
+		soundeffectsslider.value = script.soundeffectvol;
+        tempmusic = musicslider.value;
+        tempsoundeffects = soundeffectsslider.value;
 	}
-	
+    float tempmusic;
+    float tempsoundeffects;
 	// Update is called once per frame
 	void Update () {
-		music.volume = (musicslider.value / 100);
-		soundeffects.volume = (soundeffectsslider.value / 100);
+        
+		music.volume = (musicslider.value);
+		script.musicvol = music.volume;
+		soundeffects.volume = (soundeffectsslider.value);
+		script.soundeffectvol = soundeffects.volume;
+        if(tempmusic != music.volume || tempsoundeffects != soundeffects.volume) {
+            script.save();
+        }
+        tempmusic = music.volume;
+         tempsoundeffects = soundeffects.volume;
 	}
 
 	void open(){
@@ -37,7 +54,7 @@ public class settings : MonoBehaviour {
 		settingscanvas.SetActive (false);
 	}
 
-	
+
 	void reset(){
 		script.clearsave ();
 		close ();
