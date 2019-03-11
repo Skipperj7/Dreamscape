@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class lever : MonoBehaviour {
 
-    public GameObject maze;
+
+	public List<GameObject> maze;
     public GameObject player;
     public string levername;
     private bool onoff;
     public Vector2 position;
-    public float angle;
+    
 	// Use this for initialization
 	void Start () {
 		
@@ -44,13 +45,26 @@ public class lever : MonoBehaviour {
 
 
     void changemaze(string m){
+		
         switch(m){
-            case "Maze 1 Lever 1":
-                int i = maze.transform.childCount;
-                for (int l = 0; l < i; l++)
-                {
-                    maze.transform.GetChild(l).gameObject.transform.RotateAround(position, Vector3.forward, angle);
-                }
+		case "Maze 1 Lever 1":
+			GameObject g = maze [0];
+			int i = g.transform.childCount;
+			for (int l = 0; l < i; l++) {
+				g.transform.GetChild (l).gameObject.transform.RotateAround (position, Vector3.forward, 90);
+			}
+			g = maze [1];
+			i = g.transform.childCount;
+			for (int l = 0; l < i; l++) {
+				g.transform.GetChild (l).gameObject.transform.RotateAround (position, Vector3.forward, -90);
+			}
+			Destroy (gameObject);
+                break;
+		case "back":
+			SceneManager.LoadScene (0);
+			break;
+            case "forward":
+                SceneManager.LoadScene(2);
                 break;
         }
         Destroy(GetComponent<lever>());

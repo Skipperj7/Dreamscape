@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using UnityEngine.SceneManagement;
 
 public class start : MonoBehaviour {
 
@@ -25,7 +28,14 @@ public class start : MonoBehaviour {
 	}
 
 	void startsave(){
-		decidecanvas.SetActive (true);
+		if (File.Exists (Application.persistentDataPath + "/gamedata.dat")) {
+			decidecanvas.SetActive (true);
+		} 
+		else {
+			script.test = true;
+			script.save ();
+			SceneManager.LoadScene (1);
+		}
 
 	}
 
@@ -36,9 +46,12 @@ public class start : MonoBehaviour {
 
 		//keep
 		script.load ();
+		SceneManager.LoadScene (1);
 	}
 
 	void dno(){
 		script.clearsave ();
+		script.save ();
+		SceneManager.LoadScene (1);
 	}
 }

@@ -15,6 +15,10 @@ public class settings : MonoBehaviour {
 	public AudioSource soundeffects;
 	public BackgroundMechanics script;
 
+    public Button startbtn;
+    public Button setbtn;
+    public Button shopbtn;
+
 	// Use this for initialization
 	void Start () {
 		settingsbuton.onClick.AddListener (open);
@@ -48,11 +52,17 @@ public class settings : MonoBehaviour {
 
 	void open(){
 		settingscanvas.SetActive (true);
-	}
+        startbtn.enabled = false;
+        setbtn.enabled = false;
+        shopbtn.enabled = false;
+    }
 
 	void close(){
 		settingscanvas.SetActive (false);
-	}
+        startbtn.enabled = true;
+        setbtn.enabled = true;
+        shopbtn.enabled = true;
+    }
 
 
 	void reset(){

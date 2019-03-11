@@ -98,4 +98,9 @@ public class intromusic : MonoBehaviour {
 
 
 	}
+
+	void startgame(){
+		
+	}
+
 }
